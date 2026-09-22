@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão de Visita - Cayenne</title>
+
+    <style>
+        html, body {
+            min-height: 100%;
+            margin: 0;
+        }
+
+        body {
+            background-color: #dbeafe;
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background-color: #bfdbfe;
+            padding: 30px 20px;
+            margin-bottom: 10px;
+        }
+
+        .header-conteudo {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .header-texto {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .header-texto h1 {
+            color: #1565c0;
+            font-size: 32px;
+            margin: 0 0 5px;
+        }
+
+        .header-texto p {
+            margin: 5px 0;
+        }
+
+        .header-frase {
+            color: #334155;
+            font-style: italic;
+        }
+
+        .perfil {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        /* NAVEGAÇÃO SIMPLES */
+        nav {
+            margin: 0 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        main {
+            flex: 1;
+            margin: 15px;
+        }
+
+        h1, h2, h3 {
+            color: #1565c0;
+        }
+
+        strong, a {
+            color: #0d47a1;
+        }
+
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        button:focus-visible {
+            outline: 3px solid #e65100;
+            outline-offset: 3px;
+        }
+
+        a:hover {
+            color: #003c8f;
+        }
+
+        .pular-conteudo {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background-color: white;
+            color: #000;
+            padding: 10px;
+            z-index: 100;
+        }
+
+        .pular-conteudo:focus {
+            left: 10px;
+            top: 10px;
+        }
+
+        /* HOBBIES */
+        .hobbies ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .hobbies li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .hobbies img {
+            width: 150px;
+            height: 150px;
+            max-width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        /* TABELA */
+        table {
+            border-collapse: collapse;
+            max-width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid #0073cc;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #bfdbfe;
+        }
+
+        hr {
+            border: none;
+            height: 1.5px;
+            background-color: #1565c0;
+            width: 100%;
+            flex-shrink: 0;
+            margin: 15px 0;
+        }
+
+        /* FORMULÁRIO */
+        form {
+            max-width: 500px;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            font: inherit;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+        }
+
+        button {
+            background-color: #1565c0;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0d47a1;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background-color: #1565c0;
+            color: #ffffff;
+            padding: 8px 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .header-conteudo {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .header-texto h1 {
+                font-size: 26px;
+            }
+
+            .perfil {
+                width: 110px;
+                height: 110px;
+            }
+
+            .hobbies ul {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 20px 12px;
+            }
+
+            .hobbies img {
+                width: 120px;
+                height: 120px;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <a class="pular-conteudo" href="#conteudo">
+        Pular para o conteúdo principal
+    </a>
+
+    <header>
+        <div class="header-conteudo">
+
+            <div class="header-texto">
+                <h1>Cayenne Galante do Nascimento</h1>
+                <p>Análise e Desenvolvimento de Sistemas - ADS</p>
+            </div>
+
+            <img
+                class="perfil"
+                src="../Imagens/perfil.jpg"
+                alt="Foto de perfil de Cayenne"
+            >
+
+        </div>
+    </header>
+
+    <nav aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#hobbies">Hobbies</a>
+        <a href="#contato">Contato</a>
+        <a href="#objetivo">Objetivos</a>
+        <a href="#sites">Sites</a>
+    </nav>
+
+    <hr>
+
+    <main id="conteudo">
+
+        <section id="sobre">
+            <h2>Sobre mim</h2>
+            <p><strong>Cidade/UF:</strong> Jandira-SP</p>
+            <p><strong>Curso:</strong> Análise e Desenvolvimento de Sistemas - ADS</p>
+        </section>
+
+        <section id="habilidades">
+            <h2>Habilidades</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Tecnologia</th>
+                        <th scope="col">Nível</th>
+                        <th scope="col">Experiência (meses)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>HTML</td>
+                        <td>Intermediário</td>
+                        <td>6 meses</td>
+                    </tr>
+                    <tr>
+                        <td>CSS</td>
+                        <td>Intermediário</td>
+                        <td>6 meses</td>
+                    </tr>
+                    <tr>
+                        <td>JavaScript</td>
+                        <td>Básico</td>
+                        <td>2 meses</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="hobbies" class="hobbies">
+            <h2>Hobbies</h2>
+
+            <ul>
+                <li>
+                    Tocar teclado
+                    <img src="../Imagens/play.jpg" alt="">
+                </li>
+
+                <li>
+                    Ler
+                    <img src="../Imagens/read (2).jpg" alt="">
+                </li>
+
+                <li>
+                    Ouvir música
+                    <img src="../Imagens/listen.jpg" alt="">
+                </li>
+
+                <li>
+                    Jogar
+                    <img src="../Imagens/game.jpg" alt="">
+                </li>
+            </ul>
+        </section>
+
+        <section id="contato">
+            <h2>Contatos</h2>
+
+            <ul>
+                <li>
+                    <a
+                        href="https://github.com/CayenneGn7"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Meu GitHub
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="https://www.linkedin.com/in/cayenne-galante-do-nascimento/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Meu LinkedIn
+                    </a>
+                </li>
+
+                <li>
+                    <a href="mailto:cayennegnascimento@gmail.com">
+                        Meu e-mail
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <section id="contato-form">
+            <h2>Entre em contato</h2>
+
+            <form>
+                <label for="nomeContato">Nome:</label>
+                <input
+                    type="text"
+                    id="nomeContato"
+                    name="nome"
+                    autocomplete="name"
+                    required
+                >
+                <br><br>
+
+                <label for="emailContato">E-mail:</label>
+                <input
+                    type="email"
+                    id="emailContato"
+                    name="email"
+                    autocomplete="email"
+                    required
+                >
+                <br><br>
+
+                <label for="assunto">Assunto:</label>
+                <input
+                    type="text"
+                    id="assunto"
+                    name="assunto"
+                    placeholder="Dúvida, sugestão..."
+                >
+                <br><br>
+
+                <label for="mensagemContato">Mensagem:</label>
+                <textarea
+                    id="mensagemContato"
+                    name="mensagem"
+                    placeholder="Digite sua mensagem aqui..."
+                    required
+                ></textarea>
+                <br><br>
+
+                <button type="submit">Enviar mensagem</button>
+            </form>
+        </section>
+
+        <section id="objetivo">
+            <h2>Objetivos Profissionais</h2>
+
+            <ol>
+                <li>
+                    <strong>Curto prazo (6 meses):</strong>
+                    Estar atuando na área de tecnologia como Jovem Aprendiz em Tecnologia ou Projetos.
+                </li>
+
+                <li>
+                    <strong>Médio prazo (1-2 anos):</strong>
+                    Conseguir um estágio em Desenvolvimento de Software e começar a atuar diretamente na criação de aplicações.
+                </li>
+
+                <li>
+                    <strong>Longo prazo (3-5 anos):</strong>
+                    Trabalhar como desenvolvedora de software e atuar na criação de sistemas e soluções para problemas reais.
+                </li>
+            </ol>
+        </section>
+
+        <section id="sites">
+            <h2>TOP 5 sites que mais acesso</h2>
+
+            <ol>
+                <li>
+                    <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a>
+                </li>
+                <li>
+                    <a href="https://www.last.fm/" target="_blank" rel="noopener noreferrer">Last.fm</a>
+                </li>
+                <li>
+                    <a href="https://www.spotify.com/" target="_blank" rel="noopener noreferrer">Spotify</a>
+                </li>
+                <li>
+                    <a href="https://letterboxd.com/" target="_blank" rel="noopener noreferrer">Letterboxd</a>
+                </li>
+                <li>
+                    <a href="https://archive.org/" target="_blank" rel="noopener noreferrer">Internet Archive</a>
+                </li>
+            </ol>
+        </section>
+
+        <aside>
+            <h3>Curiosidade sobre mim</h3>
+            <p>Gosto de cuidar de hortas e plantas.</p>
+        </aside>
+
+    </main>
+
+    <footer>
+        <p>Cayenne 2026</p>
+    </footer>
+
+</body>
+</html>
